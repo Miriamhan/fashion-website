@@ -150,7 +150,7 @@
 
 
   <div class="f">
-    <form  name="myForm">
+    <form method="post" onsubmit="validate();" target="_blank" name="myForm">
     <label class="label">First Name :</label><br />
     <input type="text"id="name" name="fname" required /><br />
     <label class="label">Last Name :</label><br />
@@ -205,7 +205,14 @@
     var length = document.getElementById("length");
     var special = document.getElementById("special");
     var white = document.getElementById("white");
-
+    var lowerCaseLetters = /[a-z]/g;
+    var upperCaseLetters = /[A-Z]/;
+    var numbers = /[0-9]/g;
+    var speciall = /[!@#$%^&*_=+-]/g;
+    var space = /[ ]/g;
+    
+    
+    
     // When the user clicks on the password field, show the message box
     myInput.onfocus = function () {
       document.getElementById("message").style.display = "block";
@@ -219,7 +226,7 @@
     // When the user starts to type something inside the password field
     myInput.onkeyup = function () {
       // Validate lowercase letters
-      var lowerCaseLetters = /[a-z]/g;
+     
       if (myInput.value.match(lowerCaseLetters)) {
         letter.classList.remove("invalid");
         letter.classList.add("valid");
@@ -229,7 +236,7 @@
       }
 
       // Validate capital letters
-      var upperCaseLetters = /[A-Z]/;
+      
       if (myInput.value.charAt(0) === myInput.value.charAt(0).toUpperCase()) {
         capital.classList.remove("invalid");
         capital.classList.add("valid");
@@ -239,7 +246,7 @@
       }
 
       // Validate numbers
-      var numbers = /[0-9]/g;
+      
       if (myInput.value.match(numbers)) {
         number.classList.remove("invalid");
         number.classList.add("valid");
@@ -257,7 +264,7 @@
         length.classList.add("invalid");
       }
       //validate a special charcter 
-      var speciall = /[!@#$%^&*_=+-]/g;
+      
       if (myInput.value.match(speciall)) {
         special.classList.remove("invalid");
         special.classList.add("valid");
@@ -266,7 +273,7 @@
         special.classList.add("invalid");
       }
       //validate a white space free 
-      var space = /[ ]/g;
+      
       if (myInput.value.match(space)) {
         white.classList.remove("valid");
         white.classList.add("invalid");
@@ -301,7 +308,8 @@
     }
     var myInput3 = document.getElementById("mail");
     var mails = document.getElementById("mails");
-
+    var mail_format = /^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/;
+    
     // When the user clicks on the Email field, show the message box
     myInput3.onfocus = function () {
       document.getElementById("message3").style.display = "block";
@@ -315,7 +323,7 @@
     // When the user starts to type something inside the Email field
     myInput3.onkeyup = function () {
       // Validate email
-      var mail_format = /^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/;
+      
       if (myInput3.value.match(mail_format)) {
         mails.classList.remove("invalid");
         mails.classList.add("valid");
@@ -324,6 +332,18 @@
         mails.classList.add("invalid");
       }
     }
+    function validate() {
+            if (myInput2.value.length == 11 && myInput3.value.match(mail_format) && myInput.value.match(space) &&
+            myInput.value.match(speciall) && myInput.value.length == 8 && myInput.value.match(numbers) && myInput.value.charAt(0) === myInput.value.charAt(0).toUpperCase()
+            && myInput.value.match(lowerCaseLetters)) {
+               
+                
+            }
+            else{
+                window.location.href="home.html";
+            }
+
+        }
   </script>
 
   <div class="topnav">
